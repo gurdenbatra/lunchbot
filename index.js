@@ -85,10 +85,13 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
 // BEGIN EDITING HERE!
 //
 
+var request = require('request');
+var today = new Date();
+
 controller.on('slash_command', function (slashCommand, message) {
 
     switch (message.command) {
-        case "/echo": //handle the `/echo` slash command. We might have others assigned to this app too!
+        case "/lunch": //handle the `/echo` slash command. We might have others assigned to this app too!
             // The rules are simple: If there is no text following the command, treat it as though they had requested "help"
             // Otherwise just echo back to them what they sent us.
 
@@ -98,16 +101,127 @@ controller.on('slash_command', function (slashCommand, message) {
             // if no text was supplied, treat it as a help command
             if (message.text === "" || message.text === "help") {
                 slashCommand.replyPrivate(message,
-                    "I echo back what you tell me. " +
-                    "Try typing `/echo hello` to see.");
+                    "I give lunch menu options ");
                 return;
             }
 
             // If we made it here, just echo what the user typed back at them
             //TODO You do it!
-            slashCommand.replyPublic(message, "1", function() {
-                slashCommand.replyPublicDelayed(message, "2").then(slashCommand.replyPublicDelayed(message, "3"));
-            });
+            if (message.text === "vm5"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["9"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "VM5-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+            if (message.text === "valimo"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["8"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Valimo- " + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+            if (message.text === "alvari"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["5"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Alvari-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+            if (message.text === "kone"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["10"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Konetekniikka-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+
+            if (message.text === "kva"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["1"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Kvarkki-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+
+            if (message.text === "sah"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["6"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Sähkötekniikka-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
+
+            if (message.text === "taf"){
+                request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var tst = JSON.parse(body);
+                    var mainJSON = tst["3"]["2016-09-30"];
+                    var string = "";
+                    for (var i = 0; i < mainJSON.length; i++) {
+                        string+= mainJSON[i].title + " ";
+                    }
+                    slashCommand.replyPublic(message, "Täffä-" + string);
+                  }
+                else {
+                     slashCommand.replyPublic(message, error);
+                }
+                });
+            }
 
             break;
         default:
