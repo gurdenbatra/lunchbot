@@ -87,6 +87,11 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
 
 var request = require('request');
 var today = new Date();
+var dateString = "";
+dateString += today.getFullYear() + "-";
+dateString += (today.getMonth() + 1) + "-";
+dateString += today.getDate();
+
 
 controller.on('slash_command', function (slashCommand, message) {
 
@@ -221,6 +226,10 @@ controller.on('slash_command', function (slashCommand, message) {
                      slashCommand.replyPublic(message, error);
                 }
                 });
+            }
+
+            if (message.text === "help"){
+                 slashCommand.replyPublic(message, "Moi! Lunch options-Aalto Valimo:'valimo', Aalto/VM5:'vm5', Alvari:'alvari', Konetekniikka:'kone', Kvarkki:'kva', Sähkötekniikka:'sah', Täffä:'taf' For any errors/suggestions ping @gurden" );
             }
 
             break;
