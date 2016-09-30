@@ -106,7 +106,7 @@ controller.on('slash_command', function (slashCommand, message) {
             // if no text was supplied, treat it as a help command
             if (message.text === "" || message.text === "help") {
                 slashCommand.replyPrivate(message,
-                    "I give lunch menu options ");
+                    "Moi! Lunch options-Aalto Valimo:'valimo', Aalto/VM5:'vm5', Alvari:'alvari', Konetekniikka:'kone', Kvarkki:'kva', Sähkötekniikka:'sah', Täffä:'taf' For any errors/suggestions ping @gurden");
                 return;
             }
 
