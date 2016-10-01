@@ -89,7 +89,7 @@ var request = require('request');
 var today = new Date();
 var dateString = "";
 dateString += today.getFullYear() + "-";
-dateString += (today.getMonth() + 1) + "-";
+dateString += (today.getMonth() + 1 +2) + "-";
 dateString += today.getDate();
 
 
@@ -181,7 +181,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["1"]["2016-09-30"];
+                    var mainJSON = tst["1"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
