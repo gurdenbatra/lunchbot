@@ -89,8 +89,13 @@ var request = require('request');
 var today = new Date();
 var dateString = "";
 dateString += today.getFullYear() + "-";
-dateString += (today.getMonth() + 1 +2) + "-";
-dateString += today.getDate();
+dateString += (today.getMonth() + 1) + "-";
+if(today.getDate() < 10) {
+    dateString += "0" + today.getDate();
+}
+else {
+    dateString += today.getDate();
+}
 
 
 controller.on('slash_command', function (slashCommand, message) {
