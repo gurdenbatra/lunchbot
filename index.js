@@ -91,7 +91,7 @@ var dateString = "";
 dateString += today.getFullYear() + "-";
 dateString += (today.getMonth() + 1) + "-";
 if(today.getDate() < 10) {
-    dateString += "0" + (today.getDate()+2);
+    dateString += "0" + today.getDate();
 }
 else {
     dateString += today.getDate();
@@ -121,7 +121,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["9"]["2016-09-30"];
+                    var mainJSON = tst["9"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -137,7 +137,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["8"]["2016-09-30"];
+                    var mainJSON = tst["8"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -153,7 +153,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["5"]["2016-09-30"];
+                    var mainJSON = tst["5"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -169,7 +169,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["10"]["2016-09-30"];
+                    var mainJSON = tst["10"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -203,7 +203,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["6"]["2016-09-30"];
+                    var mainJSON = tst["6"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -220,7 +220,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["3"]["2016-09-30"];
+                    var mainJSON = tst["3"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
@@ -231,10 +231,6 @@ controller.on('slash_command', function (slashCommand, message) {
                      slashCommand.replyPublic(message, error);
                 }
                 });
-            }
-
-            if (message.text === "help"){
-                 slashCommand.replyPublic(message, "Moi! Lunch options-Aalto Valimo:'valimo', Aalto/VM5:'vm5', Alvari:'alvari', Konetekniikka:'kone', Kvarkki:'kva', Sähkötekniikka:'sah', Täffä:'taf' For any errors/suggestions ping @gurden" );
             }
 
             break;
