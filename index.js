@@ -91,7 +91,7 @@ var dateString = "";
 dateString += today.getFullYear() + "-";
 dateString += (today.getMonth() + 1) + "-";
 if(today.getDate() < 10) {
-    dateString += "0" + (today.getDate()+1);
+    dateString += "0" + today.getDate();
 }
 else {
     dateString += today.getDate();
@@ -121,7 +121,6 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    slashCommand.replyPublic(message, dateString);
                     var mainJSON = tst["9"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
