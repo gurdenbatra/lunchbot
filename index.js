@@ -91,7 +91,7 @@ var dateString = "";
 dateString += today.getFullYear() + "-";
 dateString += (today.getMonth() + 1) + "-";
 if(today.getDate() < 10) {
-    dateString += "0" + today.getDate();
+    dateString += "0" + (today.getDate()+1);
 }
 else {
     dateString += today.getDate();
