@@ -121,7 +121,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 request('https://kitchen.kanttiinit.fi/menus?&lang=en', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var tst = JSON.parse(body);
-                    var mainJSON = tst["9"]["2016-10-03"];
+                    var mainJSON = tst["9"][dateString];
                     var string = "";
                     for (var i = 0; i < mainJSON.length; i++) {
                         string+= mainJSON[i].title + " ";
