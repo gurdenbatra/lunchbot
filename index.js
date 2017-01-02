@@ -112,7 +112,6 @@ controller.on('slash_command', function (slashCommand, message) {
         case "/lunch": //handle the `/echo` slash command. We might have others assigned to this app too!
             // The rules are simple: If there is no text following the command, treat it as though they had requested "help"
             // Otherwise just echo back to them what they sent us.
-            slashCommand.replyPublic(message, dateString);
             // but first, let's make sure the token matches!
             if (message.token !== process.env.VERIFICATION_TOKEN) return; //just ignore it.
 
