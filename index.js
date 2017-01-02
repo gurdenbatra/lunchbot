@@ -89,7 +89,12 @@ var request = require('request');
 var today = new Date();
 var dateString = "";
 dateString += today.getFullYear() + "-";
-dateString += (today.getMonth() + 1) + "-";
+if(today.getMonth() < 10){
+    dateString += "0" + (today.getMonth() + 1) + "-";
+}
+else{
+    dateString += (today.getMonth() + 1) + "-";
+}
 if(today.getDate() < 10) {
     dateString += "0" + today.getDate();
 }
