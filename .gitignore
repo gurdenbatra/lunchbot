@@ -27,6 +27,7 @@ build/Release
 
 # Dependency directory
 node_modules
+db_slackbutton_slash_command
 
 # Optional npm cache directory
 .npm
